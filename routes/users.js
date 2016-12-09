@@ -41,8 +41,6 @@ router.post('/signup', function (req, res, next) {
 	var errors = req.ValidationErrors();
 
 	if errors{
-
-	} else {
 		res.render('users/signup', {
 			errors: errors,
 			first_name: first_name,
@@ -55,6 +53,9 @@ router.post('/signup', function (req, res, next) {
 			username: username,
 			password: password
 			password2: password2
+
+	} else {
+
 		})
 
 	}
