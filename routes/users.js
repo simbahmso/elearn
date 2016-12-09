@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport')
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 //Include User Model
@@ -30,17 +30,17 @@ router.post('/signup', function (req, res, next) {
 	var type				= req.body.type;
 
 	// Form Field Validation
-	req.checkBody('first_name', First name field is required).notEmpty();
-	req.checkBody('last_name', Last name field is required).notEmpty();
-	req.checkBody('email', Email field is required).notEmpty();
-	req.checkBody('email', Email must be a valid email address).isEmail();
-	req.checkBody('username', Username field is required).notEmpty();
-	req.checkBody('password', Password field is required).notEmpty();
-	req.checkBody('password2', Passwords do not match).equals(req.body.password);
+	req.checkBody('first_name', 'First name field is required').notEmpty();
+	req.checkBody('last_name', 'Last name field is required').notEmpty();
+	req.checkBody('email', 'Email field is required').notEmpty();
+	req.checkBody('email', 'Email must be a valid email address').isEmail();
+	req.checkBody('username', 'Username field is required').notEmpty();
+	req.checkBody('password', 'Password field is required').notEmpty();
+	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
 	var errors = req.ValidationErrors();
 
-	if errors{
+  if (errors) {
 		res.render('users/signup', {
 			errors: errors,
 			first_name: first_name,
@@ -51,15 +51,16 @@ router.post('/signup', function (req, res, next) {
 			zip: zip,
 			email: email,
 			username: username,
-			password: password
+			password: password,
 			password2: password2
 
-	} else {
+    });
+	/*}else {
+		if (type == 'student') {
+			User.saveStudent(newUser);
+		}
 
-		})
-
-	}
-
-});
+		}
+});*/
 
 module.exports = router;
