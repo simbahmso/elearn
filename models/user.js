@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'); 
+var bcrypt = require('bcryptjs')
 
 // User Schema
 var classSchema = mongoose.Schema({
@@ -10,6 +11,7 @@ var classSchema = mongoose.Schema({
 	},
 	password: {
 		type: String
+		bcrypt: true
 	},
 	type: {
 		type: String
@@ -27,4 +29,16 @@ module.exports.getUserById = function(id ,callback){
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
 	Class.findOne(query, callback);
+}
+
+//Save Student
+module.exports.saveStudent = function(newUser, newStudent, callback){
+	bcrypt.hash(newUser.password, 10 function err, hash){
+		if err throw errl
+			//Set has
+		newUser.password = hash;
+		console.log('Student is being saved!');
+		async.paralell([newUser.save, newStudent,save], callback);
+	}
+
 }
