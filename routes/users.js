@@ -33,9 +33,9 @@ router.post('/signup', function (req, res, next) {
 	req.checkBody('first_name', First name field is required).notEmpty();
 	req.checkBody('last_name', Last name field is required).notEmpty();
 	req.checkBody('email', Email field is required).notEmpty();
-	req.checkBody('email', Email must be a valid email address).notEmpty();
+	req.checkBody('email', Email must be a valid email address).isEmail();
 	req.checkBody('username', Username field is required).notEmpty();
 	req.checkBody('password', Password field is required).notEmpty();
-	req.checkBody('password2', Passwords do not match).notEmpty();
+	req.checkBody('password2', Passwords do not match).equals(req.body.password);
 
 module.exports = router;
