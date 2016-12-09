@@ -24,7 +24,7 @@ module.exports.getUserById = function(id ,callback){
 }
 
 // Fetch  Single Class
-module.exports.getClassById = function(username, callback){
+module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
 	Class.findOne(query, callback);
 }
