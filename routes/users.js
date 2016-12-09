@@ -26,9 +26,9 @@ router.post('/signup', function (req, res, next) {
 	var email				= req.body.email;
 	var username			= req.body.username;
 	var password			= req.body.password;
-	var password2			= req.body.password2
-	var type				= req.body.type
-})
+	var password2			= req.body.password2;
+	var type				= req.body.type;
+
 	// Form Field Validation
 	req.checkBody('first_name', First name field is required).notEmpty();
 	req.checkBody('last_name', Last name field is required).notEmpty();
@@ -37,5 +37,28 @@ router.post('/signup', function (req, res, next) {
 	req.checkBody('username', Username field is required).notEmpty();
 	req.checkBody('password', Password field is required).notEmpty();
 	req.checkBody('password2', Passwords do not match).equals(req.body.password);
+
+	var errors = req.ValidationErrors();
+
+	if errors{
+
+	} else {
+		res.render('users/signup', {
+			errors: errors,
+			first_name: first_name,
+			last_name: last_name,
+			street_address: street_address,
+			city: city,
+			state: state,
+			zip: zip,
+			email: email,
+			username: username,
+			password: password
+			password2: password2
+		})
+
+	}
+
+});
 
 module.exports = router;
